@@ -227,9 +227,9 @@ namespace Thirteenth
 
             if (numberStudents < maxNumberStudents)
             {
-                Student st = students[numberStudents];
-                st.inputDataAboutStudents();
-                students.Add(st);
+                
+              students[numberStudents].inputDataAboutStudents();
+              
                 numberStudents++;
             }
             else Console.WriteLine("Невозможно добавить студента.Массив заполнен.");
@@ -266,6 +266,7 @@ namespace Thirteenth
                         students[i].Month_birth,
                         students[i].Year_birth
                         );
+                        students.Add(arrStudents[j]);
                         j++;
                     }
                     students[i].makeEmpty();
@@ -279,6 +280,7 @@ namespace Thirteenth
                     students[i].Day_birth = arrStudents[i].Day_birth;
                     students[i].Month_birth = arrStudents[i].Month_birth;
                     students[i].Year_birth = arrStudents[i].Year_birth;
+                    students.Add(students[i]);
                 }
 
                 for (int i = 0; i < count; i++)
@@ -321,22 +323,22 @@ namespace Thirteenth
             {
                 string line;
                 int i = 0;
-                string[] buf;
+                String[] buf;
                  
                 while ((line = reader.ReadLine()) != null)
                 {
                     buf = line.Split(' ');
                     if (buf.Length == 6)
                     {
-                        Student stud = students[i];
-                       
-                        stud.LastName = buf[0];
-                        stud.Name = buf[1];
-                        stud.Patronymic = buf[2];
-                        stud.Day_birth = Convert.ToInt32(buf[3]);
-                        stud.Month_birth = Convert.ToInt32(buf[4]);
-                        stud.Year_birth = Convert.ToInt32(buf[5]);
+                        students[i].LastName = buf[0];
+                        students[i].Name = buf[1];
+                        students[i].Patronymic = buf[2];
+                        students[i].Day_birth = Convert.ToInt32(buf[3]);
+                        students[i].Month_birth = Convert.ToInt32(buf[4]);
+                        students[i].Year_birth = Convert.ToInt32(buf[5]);
+
                         students.Add(students[i]);
+                        numberStudents++;
                         i++;
                     }
                 }
@@ -363,7 +365,7 @@ namespace Thirteenth
 
                 else
                 {
-                    for (int i = 0; i < quantityStudents; i++)
+                    for (int i = 0; i <  quantityStudents; i++)
                     {
                         addStudent();
                     }
