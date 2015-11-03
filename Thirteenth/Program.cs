@@ -16,6 +16,11 @@ namespace Thirteenth
         static void Main(string[] args)
         {
             bool flag = true;
+
+            for (int i = 0; i < maxNumberStudents; i++)
+            {
+                students.Add(new Student());
+            }
             while (flag)
             {
 
@@ -45,26 +50,26 @@ namespace Thirteenth
                         case 0:
                             {
                                 flag = false;
-                                Console.WriteLine("Программа завершила работу.");
+                                Console.WriteLine( "Программа завершила работу." );
                                 break;
                             }
 
                         case 1:
                             {
 
-                                Console.WriteLine("Количество созданных объектов = {0}", Student.quantityObjects - 20);
-                                Console.WriteLine("\nДемонстрируется работа трех конструкторов: ");
+                                Console.WriteLine( "Количество созданных объектов = {0}", Student.quantityObjects - 20 );
+                                Console.WriteLine( "\nДемонстрируется работа трех конструкторов: ");
 
                                 Student firstStudent = new Student();
                                 firstStudent.outputDataAboutStudents();
 
-                                Student secondStudent = new Student("Иван", "Николаевич", "Тополев", 10, 12, 1990);
+                                Student secondStudent = new Student( "Иван", "Николаевич", "Тополев", 10, 12, 1990 );
                                 secondStudent.outputDataAboutStudents();
 
                                 Student thirdStudent = new Student("Максимов");
                                 thirdStudent.outputDataAboutStudents();
 
-                                Console.WriteLine("\nКоличество созданных объектов = {0}", Student.quantityObjects - 20);
+                                Console.WriteLine("\nКоличество созданных объектов = {0}", Student.quantityObjects - 20 );
                                 break;
 
                             }
@@ -87,8 +92,8 @@ namespace Thirteenth
                                 student.Month_birth = 10;
                                 student.Year_birth = 1994;
 
-                                Console.WriteLine("\nДанные студента изменены:");
-                                Console.WriteLine("ФИО: {0} {1} {2}   Дата Рождения:{3}.{4}.{5}", student.LastName, student.Name, student.Patronymic,
+                                Console.WriteLine( "\nДанные студента изменены:" );
+                                Console.WriteLine( "ФИО: {0} {1} {2}   Дата Рождения:{3}.{4}.{5}", student.LastName, student.Name, student.Patronymic,
                                                                                                   student.Day_birth, student.Month_birth, student.Year_birth);
                                 break;
 
@@ -96,7 +101,7 @@ namespace Thirteenth
 
                         case 3:
                             {
-                                if (numberStudents == 0) new_array();
+                                if ( numberStudents == 0 ) new_array();
                                 else Console.WriteLine("Список уже сформирован, Вы можете только добавить студента");
                                 break;
                             }
@@ -107,22 +112,22 @@ namespace Thirteenth
 
                                 Student s1 = new Student();
                                 s1.inputDataAboutStudents();
-                                Console.WriteLine("\nСоздан студент: ");
+                                Console.WriteLine( "\nСоздан студент: " );
                                 s1.outputDataAboutStudents();
 
                                 Student s2 = new Student();
                                 s2.inputDataAboutStudents();
-                                Console.WriteLine("\nСоздан студент: ");
+                                Console.WriteLine( "\nСоздан студент: " );
                                 s2.outputDataAboutStudents();
 
-                                Console.WriteLine("Разница в возрасте двух студентов: {0} дн.", Math.Abs(s1 - s2));
+                                Console.WriteLine( "Разница в возрасте двух студентов: {0} дн.", Math.Abs(s1 - s2) );
                                 break;
 
                             }
                         case 7:
                             {
-                                Console.WriteLine("\nВведите год рождения студента, данные о котором Вы хотите найти:  ");
-                                int readYearBirth = int.Parse(Console.ReadLine());
+                                Console.WriteLine( "\nВведите год рождения студента, данные о котором Вы хотите найти:  " );
+                                int readYearBirth = int.Parse( Console.ReadLine() );
                                 Student.findStudentsByYearBirth(students, readYearBirth);
                                 break;
                             }
@@ -139,7 +144,7 @@ namespace Thirteenth
 
                                 Console.WriteLine("Сортировка по полной дате рождения:");
                                 
-                                students.Sort(new Student.SortByFullDateBirth());
+                                students.Sort( new Student.SortByFullDateBirth() );
 
                                 foreach (Student elem in students)
                                 {
@@ -152,9 +157,9 @@ namespace Thirteenth
                         case 10:
                             {
                                 Console.WriteLine("Сортировка по ФИО:");
-                                students.Sort(new Student.SortByName());
-                                students.Sort(new Student.SortByPatronymic());
-                                students.Sort(new Student.SortByLastName());
+                                students.Sort( new Student.SortByName() );
+                                students.Sort( new Student.SortByPatronymic() );
+                                students.Sort( new Student.SortByLastName() );
 
                                
                                 foreach (Student elem in students)
@@ -167,11 +172,6 @@ namespace Thirteenth
                         case 11:
                             {
                                 writeToFileArrayStudents();
-                                foreach (Student elem in students)
-                                {
-                                    if (!elem.isEmpty())
-                                        elem.outputDataAboutStudents();
-                                }
                                 break;
                             }
 
@@ -182,22 +182,16 @@ namespace Thirteenth
                 }
                 catch (FileNotFoundException)
                 {
-
                     Console.WriteLine("Файла с таким именем не существует");
                     Console.WriteLine("Для продолжения нажмите Enter");
                     Console.ReadKey();
-
                 }
                 catch (Exception ex)
                 {
-
                     Console.WriteLine("Exception:{0}\nFile:{1}\nLocation:{2}\n{3}", ex.Message, ex.Source, ex.TargetSite);
                     Console.WriteLine("Для продолжения нажмите Enter");
                     Console.ReadKey();
-
                 }
-
-
 
             }
         }
@@ -226,11 +220,9 @@ namespace Thirteenth
         {
 
             if (numberStudents < maxNumberStudents)
-            {
-                
+            {  
               students[numberStudents].inputDataAboutStudents();
-              
-                numberStudents++;
+              numberStudents++;
             }
             else Console.WriteLine("Невозможно добавить студента.Массив заполнен.");
 
@@ -245,54 +237,38 @@ namespace Thirteenth
             }
             else
             {
+                Student[] arrStudents = new Student[students.Count];
 
-                int count = 0;
                 for (int i = 0; i < students.Count; i++)
                 {
-                    count += (students[i].isEmpty() || students[i].LastName == readSurname ? 0 : 1);
-                }
-
-                
-                Student[] arrStudents = new Student[count];
-                for (int i = 0, j = 0; i < students.Count; i++)
-                {
-                    if (!students[i].isEmpty() && students[i].LastName != readSurname)
+                    if (students[i].LastName != readSurname && !students[i].isEmpty())
                     {
-                        arrStudents[j] = new Student(
-                        students[i].Name,
-                        students[i].Patronymic,
-                        students[i].LastName,
-                        students[i].Day_birth,
-                        students[i].Month_birth,
-                        students[i].Year_birth
-                        );
-                        students.Add(arrStudents[j]);
-                        j++;
+                        arrStudents[i] = students[i];
                     }
-                    students[i].makeEmpty();
+                    else if (students[i].LastName == readSurname)
+                    {
+                        students[i].makeEmpty();
+                        arrStudents[i] = students[i];
+                    }
+                    else arrStudents[i] = students[i];
                 }
 
-                for (int i = 0; i < count; i++)
-                {
-                    students[i].Name = arrStudents[i].Name;
-                    students[i].Patronymic = arrStudents[i].Patronymic;
-                    students[i].LastName = arrStudents[i].LastName;
-                    students[i].Day_birth = arrStudents[i].Day_birth;
-                    students[i].Month_birth = arrStudents[i].Month_birth;
-                    students[i].Year_birth = arrStudents[i].Year_birth;
-                    students.Add(students[i]);
-                }
+                students.CopyTo(arrStudents);
 
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < students.Count; i++)
                 {
-                    students[i].outputDataAboutStudents();
+                    if (!students[i].isEmpty())
+                    {
+                        students[i].outputDataAboutStudents();
+                    }
                 }
+               
             }
         }
 
         static void writeToFileArrayStudents()
         {
-            if (students.Count == 0) Console.WriteLine("Массив студентов не сформирован");
+            if (numberStudents == 0) Console.WriteLine("Массив студентов не сформирован");
             else
             {
                 Console.WriteLine("Ввведите название нового файла:");
@@ -309,7 +285,14 @@ namespace Thirteenth
                                               students[i].Day_birth, students[i].Month_birth, students[i].Year_birth);
                         }
                     }
+
+                    foreach (Student elem in students)
+                    {
+                        if (!elem.isEmpty())
+                            elem.outputDataAboutStudents();
+                    }
                 }
+                Console.WriteLine("\nМасив студентов успешно записан в файл {0} ", newFileName );
             }
         }
 
@@ -317,27 +300,25 @@ namespace Thirteenth
         {
             Console.WriteLine("Введите имя файла");
             string fileName = Console.ReadLine();
-            if (!File.Exists(fileName)) throw new FileNotFoundException();
+            if ( !File.Exists(fileName) ) throw new FileNotFoundException();
 
             using (StreamReader reader = new StreamReader(fileName, Encoding.Default))
             {
                 string line;
                 int i = 0;
-                String[] buf;
+                string[] buf;
                  
                 while ((line = reader.ReadLine()) != null)
                 {
                     buf = line.Split(' ');
                     if (buf.Length == 6)
                     {
-                        students[i].LastName = buf[0];
-                        students[i].Name = buf[1];
-                        students[i].Patronymic = buf[2];
+                        students[i].Name = buf[0];
+                        students[i].Patronymic = buf[1];
+                        students[i].LastName = buf[2];
                         students[i].Day_birth = Convert.ToInt32(buf[3]);
                         students[i].Month_birth = Convert.ToInt32(buf[4]);
                         students[i].Year_birth = Convert.ToInt32(buf[5]);
-
-                        students.Add(students[i]);
                         numberStudents++;
                         i++;
                     }
@@ -365,7 +346,7 @@ namespace Thirteenth
 
                 else
                 {
-                    for (int i = 0; i <  quantityStudents; i++)
+                    for (int i = 0; i < quantityStudents; i++)
                     {
                         addStudent();
                     }
